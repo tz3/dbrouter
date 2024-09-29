@@ -12,14 +12,16 @@ type Stmt interface {
 	Exec(...interface{}) (sql.Result, error)
 	ExecContext(ctx context.Context, args ...interface{}) (sql.Result, error)
 	Query(...interface{}) (*sql.Rows, error)
-	QueryRow(...interface{}) *sql.Row
+	QueryRow(args ...interface{}) *sql.Row
+	QueryContext(ctx context.Context, args ...interface{}) (*sql.Rows, error)
+	QueryRowContext(ctx context.Context, args ...interface{}) *sql.Row
 }
 
 // stmt is the internal implementation of the Stmt interface.
 type stmt struct {
-	db      *DB         // Reference to the DB instance.
-	rwstmt  *sql.Stmt   // Prepared statement for the RW database.
-	rostmts []*sql.Stmt // Prepared statements for the RO databases.
+	db      *DBImplementation // Reference to the DB instance.
+	rwstmt  *sql.Stmt         // Prepared statement for the RW database.
+	rostmts []*sql.Stmt       // Prepared statements for the RO databases.
 }
 
 // Close closes all prepared statements (RW and RO) concurrently.
