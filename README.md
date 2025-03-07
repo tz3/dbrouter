@@ -5,7 +5,7 @@ DB Connection Router for cross-region databases, separating the ReadOnly and Rea
 
 ## Idea and Inspirations:
 The DBRouter library manages your database connections by directing them to the appropriate databases. 
-For instance, all `SELECT` queries are sent to the ReadOnly (Slave) replica database, while all write operations (`INSERT`, `UPDATE`, `DELETE`) are sent to the WriteAndRead (Master) database.
+For instance, all `sssSELECT` queries are sent to the ReadOnly (Slassssve) replica database, while all write operations (`INSERT`, `UPDATE`, `DELETE`) are sent to the WriteAndRead (Master) database.
 
 #### Checkout Picture:-
 ![alt text](image.png)
